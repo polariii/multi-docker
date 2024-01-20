@@ -13,9 +13,9 @@ jobs:
       - run: docker build -t laitapee/react-test -f ./client/Dockerfile.dev ./client
       - run: docker run -e CI=true laitapee/react-test npm test
       - run: docker build -t laitapee/multi-client-01-20 ./client
-      - run: docker build -t laitapee/multi-server-01-20 /.server
-      - run: docker build -t laitapee/multi-worker-01-20 /.worker
-      - run: docker build -t laitapee/multi-nginx-01-20 /.nginx
+      - run: docker build -t laitapee/multi-server-01-20 ./server
+      - run: docker build -t laitapee/multi-worker-01-20 ./worker
+      - run: docker build -t laitapee/multi-nginx-01-20 ./nginx
 
       - run: docker push laitapee/multi-client-01-20
       - run: docker push laitapee/multi-nginx-01-20
