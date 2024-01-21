@@ -1,0 +1,31 @@
+version: "3"
+services:
+  client:
+    image: "laitapee/multi-client-01-20"
+    mem_limit: 128m
+    hostname: client
+  server:
+    image: "laitapee/multi-server-01-20"
+    mem_limit: 128m
+    hostname: api
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+      - PGUSER=$PGUSER
+      - PGHOST=$PGHOST
+      - PGDATABASE=$PGDATABASE
+      - PGPASSWORD=$PGPASSWORD
+      - PGPORT=$PGPORT
+  worker:
+    image: "laitapee/multi-worker-01-20"
+    mem_limit: 128m
+    hostname: worker
+    environment:
+      - REDIS_HOST=$REDIS_HOST
+      - REDIS_PORT=$REDIS_PORT
+  nginx:
+    image: "laitapee/multi-nginx-01-20"
+    mem_limit: 128m
+    hostname: nginx
+    ports:
+      - "80:80"
